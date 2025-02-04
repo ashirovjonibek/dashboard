@@ -1,14 +1,10 @@
 import RGL, {WidthProvider} from "react-grid-layout";
 import {useLayoutStore} from "../../store/layoutStore.js";
-import {Card, Dropdown} from "antd";
-import {useState} from "react";
-import {IconComponent} from "../../components/icons/index.jsx";
-import log from "eslint-plugin-react/lib/util/log.js";
+import {Dropdown} from "antd";
 import {GetItemById} from "../../components/items/index.jsx";
 import {BarChartOutlined, CopyOutlined, DeleteOutlined, RadarChartOutlined, SettingOutlined} from "@ant-design/icons";
 
 const ReactGridLayout = WidthProvider(RGL);
-const ItemType = {BOX: "box"};
 
 export const GridLayout = () => {
     const {

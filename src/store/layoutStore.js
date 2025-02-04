@@ -1,53 +1,6 @@
 import {create} from "zustand";
-import {AreaChartOutlined, FileImageOutlined, TableOutlined} from "@ant-design/icons";
 
 export const useLayoutStore = create((set, get) => ({
-    gridLayouts: [
-        {i: "1", x: 0, y: 0, w: 10, h: 3},
-        {i: "2", x: 10, y: 0, w: 10, h: 3},
-    ],
-    layoutsData: {
-        "1": {
-            type: "table"
-        },
-        "2": {
-            type: "table"
-        }
-    },
-    lastId: 3,
-    onLayoutChange: (layouts) => set(() => ({gridLayouts: layouts?.length > 0 ? layouts : get().gridLayouts})),
-    addGridLayout: (layout, type) => set(() => ({
-        gridLayouts: [...get().gridLayouts, layout],
-        lastId: get()?.lastId + 1,
-        layoutsData: {
-            ...get()?.layoutsData,
-            [layout?.i]: {
-                ...(get()?.layoutsData?.[layout?.i] ?? {}),
-                type
-            }
-        }
-    })),
-    setLayoutsData: (i, value = {}) => set(() => ({
-        layoutsData: {
-            ...get()?.layoutsData,
-            [i]: {
-                ...(get()?.layoutsData?.[i] ?? {}),
-                ...value
-            }
-        }
-    })),
-    config: {
-        open: true,
-        id: null
-    },
-    setConfig: ({id, open}) => set(() => ({
-        config: {
-            id, open
-        }
-    })),
-    removeGridLayout: (id) => set(() => ({gridLayouts: get().gridLayouts?.filter(l => l?.i !== id)})),
-    draggableElType: null,
-    setDraggableElType: (type) => set(() => ({draggableElType: type})),
     componentLayouts: {
         open: true,
         templates: [
@@ -93,6 +46,52 @@ export const useLayoutStore = create((set, get) => ({
             }
         ]
     },
+    gridLayouts: [
+        {i: "1", x: 0, y: 0, w: 10, h: 3},
+        {i: "2", x: 10, y: 0, w: 10, h: 3},
+    ],
+    layoutsData: {
+        "1": {
+            type: "table"
+        },
+        "2": {
+            type: "table"
+        }
+    },
+    lastId: 3,
+    draggableElType: null,
+    config: {
+        open: true,
+        id: null
+    },
+    setConfig: ({id, open}) => set(() => ({
+        config: {
+            id, open
+        }
+    })),
+    removeGridLayout: (id) => set(() => ({gridLayouts: get().gridLayouts?.filter(l => l?.i !== id)})),
+    setDraggableElType: (type) => set(() => ({draggableElType: type})),
+    onLayoutChange: (layouts) => set(() => ({gridLayouts: layouts?.length > 0 ? layouts : get().gridLayouts})),
+    addGridLayout: (layout, type) => set(() => ({
+        gridLayouts: [...get().gridLayouts, layout],
+        lastId: get()?.lastId + 1,
+        layoutsData: {
+            ...get()?.layoutsData,
+            [layout?.i]: {
+                ...(get()?.layoutsData?.[layout?.i] ?? {}),
+                type
+            }
+        }
+    })),
+    setLayoutsData: (i, value = {}) => set(() => ({
+        layoutsData: {
+            ...get()?.layoutsData,
+            [i]: {
+                ...(get()?.layoutsData?.[i] ?? {}),
+                ...value
+            }
+        }
+    })),
     setComponentLayout: (config) => set(() => ({...get()?.componentLayouts, ...config}))
 
 }))

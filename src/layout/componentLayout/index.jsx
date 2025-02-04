@@ -3,11 +3,8 @@ import {
     CloseCircleOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
-import {Button, Layout, Menu, theme} from 'antd';
+import {Button, Layout, theme} from 'antd';
 import {GridLayout} from "../gridLayout/index.jsx";
 import {useLayoutStore} from "../../store/layoutStore.js";
 import {IconComponent} from "../../components/icons/index.jsx";
