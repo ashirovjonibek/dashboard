@@ -37,7 +37,7 @@ const ComponentLayout = () => {
             (
                 async () => {
                     try {
-                        let resp = await fetch("http://localhost:3000/get/" + id);
+                        let resp = await fetch("http://45.153.187.150:3012/get/" + id);
                         let data = await resp.json();
                         setAllLayoutsData(data?.data?.layoutsData);
                         onLayoutChange(data?.data?.gridLayouts);
@@ -56,7 +56,7 @@ const ComponentLayout = () => {
             (
                 async () => {
                     try {
-                        let resp = await fetch("http://localhost:3000/get-all/");
+                        let resp = await fetch("http://45.153.187.150:3012/get-all/");
                         let data = await resp.json();
                         setAllDashboard(data?.data)
                     } catch (e) {
@@ -71,7 +71,7 @@ const ComponentLayout = () => {
     const save = async () => {
         try {
             setLoading(true)
-            let resp = await fetch('http://localhost:3000/save', {
+            let resp = await fetch('http://45.153.187.150:3012/save', {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"

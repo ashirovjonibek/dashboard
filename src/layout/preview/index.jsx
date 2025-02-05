@@ -27,7 +27,7 @@ export const PreviewDashboard = () => {
             (
                 async () => {
                     try {
-                        let resp = await fetch("http://localhost:3000/get/" + id);
+                        let resp = await fetch("http://45.153.187.150:3012/get/" + id);
                         let data = await resp.json();
                         setAllLayoutsData(data?.data?.layoutsData);
                         onLayoutChange(data?.data?.gridLayouts);
