@@ -3,7 +3,7 @@ import {
     FileImageOutlined, FontColorsOutlined, IdcardOutlined,
     OrderedListOutlined,
     StepForwardOutlined,
-    TableOutlined
+    TableOutlined, UserOutlined
 } from '@ant-design/icons'
 
 export const iconsJson = {
@@ -13,5 +13,6 @@ export const iconsJson = {
     4: OrderedListOutlined,
     5: TableOutlined,
     6: FontColorsOutlined,
-    7: IdcardOutlined
+    7: IdcardOutlined,
+    8: UserOutlined
 }

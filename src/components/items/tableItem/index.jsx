@@ -1,19 +1,35 @@
+import {useInitialDataStore} from "../../../store/initialDataStore.js";
+
 export const TableItem = ({config}) => {
-    console.log(config)
-    return <table style={{height:"100%"}} className="table table-bordered table-striped">
+    const {users} = useInitialDataStore();
+    return <div
+        className={`bg-light ${config?.data?.style?.shadow ? "shadow" : ""} ${config?.data?.style?.rounded ? "rounded" : ""}`}>
+        <h3 className="p-2">{config?.data?.title ?? "Users"}</h3>
+        <table style={{height: "100%"}} className="table m-0 p-0 table-bordered table-striped">
             <thead>
             <tr>
-                <td>name1</td>
-                <td>name2</td>
-                <td>name3</td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Web site</td>
+                <td>Address</td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>value1</td>
-                <td>value2</td>
-                <td>value3</td>
-            </tr>
+            {
+                users?.map((user, index) => <tr key={index}>
+                    <td>{user?.id}</td>
+                    <td>{user?.name}</td>
+                    <td>{user?.username}</td>
+                    <td>{user?.email}</td>
+                    <td>{user?.phone}</td>
+                    <td>{user?.website}</td>
+                    <td>{user?.address?.street}, {user?.address?.suit},{user?.address?.city}</td>
+                </tr>)
+            }
             </tbody>
         </table>
+    </div>
 }

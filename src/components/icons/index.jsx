@@ -1,6 +1,6 @@
 import {iconsJson} from "./iconsJson.js";
 
-const RenderComponent = ({Component, config}) => {
+export const RenderComponent = ({Component, config}) => {
     return <Component {...config}/>
 }
 

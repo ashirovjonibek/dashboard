@@ -26,8 +26,8 @@ export const useLayoutStore = create((set, get) => ({
             {
                 type: "table",
                 name: "Table",
-                w: 10,
-                h: 3,
+                w: 19,
+                h: 15,
                 icon: 5
             },
             {
@@ -42,20 +42,23 @@ export const useLayoutStore = create((set, get) => ({
                 name: "Header card",
                 icon: 7,
                 w: 12,
-                h: 4,
+                h: 5,
             }
         ]
     },
     gridLayouts: [
-        {i: "1", x: 0, y: 0, w: 10, h: 3},
-        {i: "2", x: 10, y: 0, w: 10, h: 3},
+        {i: "1", x: 0, y: 0, w: 19, h: 15},
     ],
     layoutsData: {
         "1": {
-            type: "table"
-        },
-        "2": {
-            type: "table"
+            type: "table",
+            data: {
+                title: "Users"
+            },
+            style: {
+                shadow: false,
+                rounded: false
+            }
         }
     },
     lastId: 3,
@@ -91,6 +94,9 @@ export const useLayoutStore = create((set, get) => ({
                 ...value
             }
         }
+    })),
+    setAllLayoutsData: (value) => set(() => ({
+        layoutsData: value
     })),
     setComponentLayout: (config) => set(() => ({...get()?.componentLayouts, ...config}))
 

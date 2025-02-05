@@ -9,16 +9,16 @@ import {HeaderCardItem} from "./headerCardItem/index.jsx";
 export const GetItemById = ({i}) => {
     const {layoutsData} = useLayoutStore();
     if (layoutsData?.[i]?.type === "table") {
-        return <TableItem config={layoutsData?.[i]}/>
+        return <TableItem config={{...layoutsData?.[i], i}}/>
     } else if (layoutsData?.[i]?.type === "chart") {
-        return <ChartItem config={layoutsData?.[i]}/>
+        return <ChartItem config={{...layoutsData?.[i], i}}/>
     } else if (layoutsData?.[i]?.type === "list") {
-        return <ListItem config={layoutsData?.[i]}/>
+        return <ListItem config={{...layoutsData?.[i], i}}/>
     } else if (layoutsData?.[i]?.type === "text") {
-        return <TextItem config={layoutsData?.[i]}/>
+        return <TextItem config={{...layoutsData?.[i], i}}/>
     } else if (layoutsData?.[i]?.type === "image") {
-        return <ImageItem config={layoutsData?.[i]}/>
+        return <ImageItem config={{...layoutsData?.[i], i}}/>
     } else if (layoutsData?.[i]?.type === "headerCard") {
-        return <HeaderCardItem config={layoutsData?.[i]}/>
+        return <HeaderCardItem config={{...layoutsData?.[i], i}}/>
     } else return null;
 }

@@ -3,6 +3,13 @@ import ReactECharts from 'echarts-for-react';
 
 const options = {
     "bar": {
+        title: {
+            subtext: "Bar chart statistic",
+            subtextStyle: {
+                color: "rgb(0,0,0)",
+                fontSize: "14px",
+            },
+        },
         xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -19,6 +26,13 @@ const options = {
         ]
     },
     "line": {
+        title: {
+            subtext: "Line chart statistic",
+            subtextStyle: {
+                color: "rgb(0,0,0)",
+                fontSize: "14px",
+            },
+        },
         xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -35,6 +49,13 @@ const options = {
         ]
     },
     "pie": {
+        title: {
+            subtext: "Pie chart statistic",
+            subtextStyle: {
+                color: "rgb(0,0,0)",
+                fontSize: "14px",
+            },
+        },
         tooltip: {
             trigger: 'item'
         },
