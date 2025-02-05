@@ -52,21 +52,19 @@ const ComponentLayout = () => {
     }, [id, refresh])
 
     useEffect(() => {
-        if (id) {
-            (
-                async () => {
-                    try {
-                        let resp = await fetch("http://45.153.187.150:3012/get-all/");
-                        let data = await resp.json();
-                        setAllDashboard(data?.data)
-                    } catch (e) {
-                        console.log(e);
-                        message.error("Error")
-                    }
+        (
+            async () => {
+                try {
+                    let resp = await fetch("http://45.153.187.150:3012/get-all/");
+                    let data = await resp.json();
+                    setAllDashboard(data?.data)
+                } catch (e) {
+                    console.log(e);
+                    message.error("Error")
                 }
-            )()
-        }
-    }, [id, refresh])
+            }
+        )()
+    }, [])
 
     const save = async () => {
         try {
