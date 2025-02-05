@@ -6,7 +6,7 @@ export const ListItem = ({config}) => {
     return <List style={{height: "100%"}} className="p-2 shadow">
         <h3>Todos</h3>
         {
-            todos?.map(t => <List.Item>
+            todos?.map((t, index) => <List.Item key={index}>
                 <div style={{width: "100%"}}>
                     <strong>
                         {t?.title}

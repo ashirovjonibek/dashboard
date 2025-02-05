@@ -7,7 +7,7 @@ import {Button, Input, Layout, message, Spin, theme} from 'antd';
 import {GridLayout} from "../gridLayout/index.jsx";
 import {useLayoutStore} from "../../store/layoutStore.js";
 import {IconComponent} from "../../components/icons/index.jsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 const {Header, Sider, Content} = Layout;
 const ComponentLayout = () => {
@@ -30,6 +30,7 @@ const ComponentLayout = () => {
     const [name, setName] = useState({text: "Dashboard", edit: false});
     const [loading, setLoading] = useState(false);
     const [refresh, setRefresh] = useState(false);
+    const [allDashboard, setAllDashboard] = useState([])
 
     useEffect(() => {
         if (id) {
@@ -41,6 +42,23 @@ const ComponentLayout = () => {
                         setAllLayoutsData(data?.data?.layoutsData);
                         onLayoutChange(data?.data?.gridLayouts);
                         setName({...name, text: data?.data?.name})
+                    } catch (e) {
+                        console.log(e);
+                        message.error("Error")
+                    }
+                }
+            )()
+        }
+    }, [id, refresh])
+
+    useEffect(() => {
+        if (id) {
+            (
+                async () => {
+                    try {
+                        let resp = await fetch("http://localhost:3000/get-all/");
+                        let data = await resp.json();
+                        setAllDashboard(data?.data)
                     } catch (e) {
                         console.log(e);
                         message.error("Error")
@@ -67,7 +85,7 @@ const ComponentLayout = () => {
             let data = await resp.json();
             message.success(data.message);
             setLoading(false);
-            setRefresh(!refresh)
+            navigate("/preview/" + data?.data);
         } catch (e) {
             setLoading(false)
             console.log(e);
@@ -80,7 +98,7 @@ const ComponentLayout = () => {
                 <Sider trigger={null} collapsedWidth={0} collapsible collapsed={collapsed} className="mx-1"
                        style={{height: "99vh"}}>
                     <div className="demo-logo-vertical mt-4"/>
-                    <div>
+                    <div className="border-bottom">
                         {
                             componentLayouts?.templates?.map((c, index) => {
                                 return <div className="element-hover p-2 rounded-2 mx-3 my-3 text-light"
@@ -103,6 +121,17 @@ const ComponentLayout = () => {
                                 </div>
                             })
                         }
+                    </div>
+                    <div>
+                        <h5 className="p-2 text-light">Dashboards</h5>
+                        <div className={"p-2"}>
+                            <div className="my-2" style={{fontSize: "15px"}}>
+                                <Link to={`/`}>New dashboard</Link>
+                            </div>
+                            {allDashboard?.map(d => <div className="my-2" style={{fontSize: "15px"}}>
+                                <Link to={`/${d?.id}`}>{d?.name}</Link>
+                            </div>)}
+                        </div>
                     </div>
                 </Sider>
                 <Layout>
